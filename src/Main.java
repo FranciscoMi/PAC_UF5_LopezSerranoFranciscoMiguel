@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +11,10 @@ public class Main {
  * 5.- Mensaje final al salir de la aplicación
  */
 	public static void main(String[] args) {
-		 //Creamos el objeto usuario de la clase Usuario para controlar sus cuentas, pero no lo instanciamos de momento porque queremos controlar sus excepciones
+		
+		Locale spanish=new Locale("es","ES");
+		
+		//Creamos el objeto usuario de la clase Usuario para controlar sus cuentas, pero no lo instanciamos de momento porque queremos controlar sus excepciones
 		Usuario usuario = null;
 		
 		//Controlamos que hasta que no se introduzca un usuario válido no se pueda continuar
