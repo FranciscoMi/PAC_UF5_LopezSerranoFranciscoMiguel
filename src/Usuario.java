@@ -1,9 +1,12 @@
+
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Usuario {
+@SuppressWarnings("serial")
+public class Usuario implements Serializable{
 	private String nombre;
 	private int edad;
 	private String DNI;
@@ -96,5 +99,5 @@ public class Usuario {
 	public String toString(){
 		return "Usuario creado correctamente. \r\n Nombre: "+nombre+", Edad: "+edad+" años, DNI: "+DNI;
 	}
-	
+		
 }

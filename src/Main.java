@@ -1,4 +1,4 @@
-import java.util.Locale;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -11,8 +11,6 @@ public class Main {
  * 5.- Mensaje final al salir de la aplicación
  */
 	public static void main(String[] args) {
-		
-		Locale spanish=new Locale("es","ES");
 		
 		//Creamos el objeto usuario de la clase Usuario para controlar sus cuentas, pero no lo instanciamos de momento porque queremos controlar sus excepciones
 		Usuario usuario = null;
@@ -27,7 +25,6 @@ public class Main {
 				System.out.println("Usuario introducido incorrectamente.");
 			}
 		}while(usuario==null);//fin while
-		
 		//Cuando hayamos comprobado que el usuario es válido accedemos al menú de gastos e ingresos.
 		/**
 		 * int accion nos controlará las opciones del menú
@@ -36,7 +33,27 @@ public class Main {
 		 */
 		int accion = 0;
 		Cuenta cuentaUsuario=new Cuenta(usuario);
-	
+		//generamos un constructor para cargar/guardar los datos
+		fichUsuario archivoUser=new fichUsuario(cuentaUsuario);
+		//Comprobamos que exista un arcgivo .dat con el mismo DNI. Si es así cargamos el archivo, en caso contrario, generamos uno nuevo
+		try {
+			if(archivoUser.cargaUsuario(usuario.getDNI())==null) {
+				try {
+					System.out.println("\nSe generará un nuevo archivo");
+					archivoUser.guardaUsuario(usuario.getDNI());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}else {
+				cuentaUsuario=archivoUser.cargaUsuario(usuario.getDNI());
+			}
+			
+		} catch (IOException error) {
+			System.out.println("No existe el usuario "+usuario.getNombre());
+			//guardamos el usuario en un archivo
+		}
+		
+		
 		@SuppressWarnings("resource")
 		 //introducir es una variable para ingresar valores de Scanner
 		Scanner introducir=new Scanner(System.in);				
@@ -49,6 +66,7 @@ public class Main {
 				System.out.println("3.- Mostrar Gastos");
 				System.out.println("4.- Mostrar Ingresos");
 				System.out.println("5.- Mostrar Saldo");
+				System.out.println("6.- Guardar datos");
 				System.out.println("0.- Salir");
 				
 				//Introducimos un entero por teclado y lo guardamos en la variable accion
@@ -92,6 +110,14 @@ public class Main {
 						//Simplemente hacemos una llamada al método getSaldo de la clase Cuenta
 						//Eso sí, dejandolo un poco bonito :-D
 						System.out.println("Saldo actual en su cuenta corriente: "+cuentaUsuario.getSaldo()+"€.\n");
+						break;
+					case 6:
+						try{
+							archivoUser.guardaUsuario(usuario.getDNI());
+							System.out.println("Archivo guardado con el DNI "+usuario.getDNI());
+						}catch(IOException e){
+							e.printStackTrace();
+						}
 						break;
 				}
 			}catch(Exception e) {

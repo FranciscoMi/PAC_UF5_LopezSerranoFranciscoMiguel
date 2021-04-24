@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 
 /**
  * Clase GastoException es una clase para controlar los errores del usuario al trabajar con el saldo del usuario

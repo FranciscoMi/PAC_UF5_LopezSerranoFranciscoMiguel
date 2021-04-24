@@ -1,14 +1,18 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Clase que controla los ingresos, gastos y saldo del usuario al que anexionemos
  * @author Francisco Miguel López
- * @version 1.0
+ * @version 2.0
  *
  */
 
-public class Cuenta {
+@SuppressWarnings("serial")
+public class Cuenta implements Serializable {
+	
+
 	/**
 	 * @param saldo valor que nos almacena el saldo actual de la cuenta y que se incrementará o decrementará a medida que introduzcamos ingresos y gastos
 	 */
@@ -80,6 +84,8 @@ public class Cuenta {
 		}else {
 			ingresos.add((ingresos.size()), ingresar);
 		}
+		//Guardamos el ingreso efectuado en el fichero de usuario
+		
 		//Actualizamos el saldo y lo devolvemos para su posterior utilización
 		setSaldo(getSaldo()+cantidad);
 		return saldo;
@@ -139,6 +145,19 @@ public class Cuenta {
 		return ingresos;
 	}
 	
+	/**
+	 * @param gastos el gastos a establecer
+	 */
+	public void setGastos(List<Gasto> gastos) {
+		this.gastos = gastos;
+	}
+
+	/**
+	 * @param ingresos el ingresos a establecer
+	 */
+	public void setIngresos(List<Ingreso> ingresos) {
+		this.ingresos = ingresos;
+	}
 	/**
 	 * Método sobreescrito de la clase padre Object que nos devuelve una cadena con el saldo actual del usuario
 	 */

@@ -1,4 +1,4 @@
-
+import java.io.Serializable;
 
 /**
  * @author Francisco Miguel
@@ -6,7 +6,11 @@
  * Esta clase hereda de Dinero y establece los ingresos que se introducen en la cuenta del usuario
  *
  */
-public class Ingreso extends Dinero{
+
+public class Ingreso extends Dinero implements Serializable{
+	
+	
+	private static final long serialVersionUID = 941170690671426891L;
 	/**
 	 * Constructor de clase con parámetros
 	 * @param ingreso es el valor en euros que se ingresa

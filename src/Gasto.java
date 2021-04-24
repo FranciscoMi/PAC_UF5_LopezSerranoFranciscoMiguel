@@ -1,9 +1,12 @@
+import java.io.Serializable;
 
 /**
  * @author Francisco Miguel López 
  * Gasto hereda de Dinero. Los valores se inicializan en el constructor
  */
-public class Gasto extends Dinero{
+@SuppressWarnings("serial")
+public class Gasto extends Dinero implements Serializable{
+
 
 	/**
 	 * Constructor de clase con parámetros
