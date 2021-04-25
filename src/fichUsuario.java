@@ -28,7 +28,7 @@ public class fichUsuario implements Serializable{
 		ObjectOutputStream serialUsuario=null;
 		try {
 			//Definimos el fichero donde introducir los datos del usuario creando un constructor de la clase ObjectOutput Stream
-			serialUsuario=new ObjectOutputStream(new FileOutputStream(new File(dni+".dat")));
+			serialUsuario=new ObjectOutputStream(new FileOutputStream(new File("./datos/"+dni+".dat")));
 			//Añadimos los datos del objeto fichUsuario
 			serialUsuario.writeObject(usuario);
 			
@@ -51,7 +51,7 @@ public class fichUsuario implements Serializable{
 	public Cuenta cargaUsuario(String dni) throws IOException {
 		ObjectInputStream serialUsuario=null;
 		try {
-			serialUsuario=new ObjectInputStream(new FileInputStream(dni+".dat"));
+			serialUsuario=new ObjectInputStream(new FileInputStream("./datos/"+dni+".dat"));
 			usuario=(Cuenta)serialUsuario.readObject();
 			
 			
