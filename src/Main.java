@@ -35,11 +35,12 @@ public class Main {
 		Cuenta cuentaUsuario=new Cuenta(usuario);
 		//generamos un constructor para cargar/guardar los datos
 		fichUsuario archivoUser=new fichUsuario(cuentaUsuario);
-		//Comprobamos que exista un arcgivo .dat con el mismo DNI. Si es así cargamos el archivo, en caso contrario, generamos uno nuevo
+		//Comprobamos que exista un archivo .dat con el mismo DNI. Si es así cargamos el archivo, en caso contrario, generamos uno nuevo
 		try {
 			if(archivoUser.cargaUsuario(usuario.getDNI())==null) {
 				try {
 					System.out.println("\nSe generará un nuevo archivo");
+					//guardamos el usuario en un archivo
 					archivoUser.guardaUsuario(usuario.getDNI());
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -50,7 +51,7 @@ public class Main {
 			
 		} catch (IOException error) {
 			System.out.println("No existe el usuario "+usuario.getNombre());
-			//guardamos el usuario en un archivo
+			
 		}
 		
 		

@@ -36,7 +36,7 @@ public class Cuenta implements Serializable {
 	 */
 	Cuenta(Usuario usuario){
 		//Agregamos el objeto usuario para controlar sus cuentas
-		this.usuario=usuario;
+		setUsuario(usuario);
 		//Inicializamos los arrays
 		this.ingresos=new ArrayList<Ingreso>();
 		this.gastos=new ArrayList<Gasto>();

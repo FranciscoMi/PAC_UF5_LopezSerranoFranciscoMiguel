@@ -19,18 +19,18 @@ public class Usuario implements Serializable{
 		Scanner introduceDatos=new Scanner(System.in);
 		
 		System.out.print("Por favor, Introduzca el nombre del usuario: ");
-		nombre=introduceDatos.nextLine();
+		setNombre(introduceDatos.nextLine());
 		
 		System.out.print("Introduzca la edad del usuario: ");
 		//Si edad no es un número entero dará un error de usuario
-		edad=introduceDatos.nextInt();
+		setEdad(introduceDatos.nextInt());
 		boolean confirmar=false;
 		//Comprobamos que el DNI introducido sea incorrecto hasta que "confirmar" sea true 
 		while(!confirmar) {
 			System.out.print("Introduzca el DNI del usuario (8 dígitos + 1 caracter): ");
-			DNI=introduceDatos.next().toUpperCase(Locale.ROOT);
+			confirmar=setDNI(introduceDatos.next().toUpperCase(Locale.ROOT));
 			//Al hacer una llamada al método setDNI confirmamos que el DNI sea válido
-			confirmar=setDNI(DNI);
+			//confirmar=setDNI(DNI);
 		}
 	}
 
@@ -84,6 +84,7 @@ public class Usuario implements Serializable{
 		//Si el patrón del DNI no es correcto, devolverá false. Y true si es bueno
 		if(comprobarDNI.matches()) {
 			System.out.println("EL DNI introducido es válido :-D");
+			this.DNI=DNI;
 			return true;
 		}else {
 			System.out.println("EL DNI introducido es incorrecto :-(");
@@ -97,7 +98,7 @@ public class Usuario implements Serializable{
 	 * ToString() nos devuelve una cadena de caracteres personalizada.
 	 */
 	public String toString(){
-		return "Usuario creado correctamente. \r\n Nombre: "+nombre+", Edad: "+edad+" años, DNI: "+DNI;
+		return "Usuario creado correctamente. \r\n Nombre: "+getNombre()+", Edad: "+getEdad()+" años, DNI: "+getDNI();
 	}
 		
 }
