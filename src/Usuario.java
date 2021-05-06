@@ -1,7 +1,5 @@
 
 import java.io.Serializable;
-import java.util.Locale;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,23 +13,7 @@ public class Usuario implements Serializable{
  */
 	
 	Usuario(){
-		@SuppressWarnings("resource") //Una vez utilizado Scanner se cerrará para evitar errores
-		Scanner introduceDatos=new Scanner(System.in);
 		
-		System.out.print("Por favor, Introduzca el nombre del usuario: ");
-		setNombre(introduceDatos.nextLine());
-		
-		System.out.print("Introduzca la edad del usuario: ");
-		//Si edad no es un número entero dará un error de usuario
-		setEdad(introduceDatos.nextInt());
-		boolean confirmar=false;
-		//Comprobamos que el DNI introducido sea incorrecto hasta que "confirmar" sea true 
-		while(!confirmar) {
-			System.out.print("Introduzca el DNI del usuario (8 dígitos + 1 caracter): ");
-			confirmar=setDNI(introduceDatos.next().toUpperCase(Locale.ROOT));
-			//Al hacer una llamada al método setDNI confirmamos que el DNI sea válido
-			//confirmar=setDNI(DNI);
-		}
 	}
 
 	/**
